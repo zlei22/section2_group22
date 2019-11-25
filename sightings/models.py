@@ -32,6 +32,7 @@ class Squirrel(models.Model):
     SHIFT_CHOICES = (
         (AM, 'AM'),
         (PM, 'PM'),
+    )
 
     shift = models.CharField(
         help_text=_('Shift'),
@@ -140,7 +141,7 @@ class Squirrel(models.Model):
 
     # Kuks
     kuks = models.BooleanField(
-        help_text=_(‘Kuks’),
+        help_text=_('Kuks'),
         default=False,
     )
     
