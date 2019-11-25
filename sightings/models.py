@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 
 # Create your models here.
-class Sighting(models.Model):
+class Squirrel(models.Model):
 
     # Latitude
     latitude = models.DecimalField(
