@@ -11,9 +11,9 @@ class Squirrel(models.Model):
         decimal_places=15,
         )
     
-    # Longtitude
-    longtitude = models.DecimalField(
-        help_text=_('Longtitude'),
+    # Longitude
+    longitude = models.DecimalField(
+        help_text=_('Longitude'),
         max_digits=19,
         decimal_places=15,
     )
