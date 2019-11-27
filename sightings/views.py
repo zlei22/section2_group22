@@ -1,6 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Squirrel
 
-# Create your views here.
+
 def index(request):
-    return HttpResponse('Hi! This is a list of sightings!')
+    squirrel=Squirrel.objects.all()
+    context={'sightings':squirrel,} 
+    return render(request,"sightings/index.html",context)
+
+
+def details(request,uid=None):
+    sighting=Squirrel.objects.get(uid)
+    context={'sighting':squirrel,}
+    return render(request,"sightings/details.html",context)
