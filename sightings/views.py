@@ -12,3 +12,8 @@ def details(request,uid=None):
     sighting=Squirrel.objects.get(uid)
     context={'sighting':squirrel,}
     return render(request,"sightings/details.html",context)
+
+def add(request,uid=None):
+    if request.method=="POST":
+        print(request.POST)
+        data=request.POST
