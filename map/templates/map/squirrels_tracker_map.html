@@ -26,6 +26,10 @@
                     accessToken: 'pk.eyJ1IjoiY2czMTc3IiwiYSI6ImNrM2dtaTUzajAzZTgzYmpxNmlzOG50bmkifQ.7aR3eNrJloBvb-jjve5YnQ'
 		}).addTo(mymap);
 		var marker = L.marker([40.78317,-73.96566]).addTo(mymap); 
+	        for (let i = 0; i < 10; i++) {
+      			var lat =squirrels_latitude[i]
+     			var lng =squirrels_longitude[i]
+		        var marker = L.marker([lat, lng]).addTo(mymap)
 	};
 }
 
