@@ -20,6 +20,6 @@ def add(request,Unique_Squirrel_Id=None):
         data=request.POST
         ret=Sightings.objects.create(Unique_Squirrel_Id='123',longitude=data['longitutde'])
         if ret:
-            return HttpResponse('Your answer has been recorded successfully')
+            return HttpResponse("Success")
         else:
-            return HttpResponse("Your answer hasn't been recorded")
+            return HttpResponse("Not yest success")
