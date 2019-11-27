@@ -11,3 +11,6 @@ def index(request):
     context = {'squirrels_latitude':squirrels_tracker_latitude,
             'squirrels_longitude':squirrels_tracker_longitude}
     return render(request,'map/squirrels_tracker_map.html',context)
+
+
+# test
