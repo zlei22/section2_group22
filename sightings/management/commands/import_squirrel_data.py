@@ -5,13 +5,16 @@ from sightings.models import Squirrel
 class Command(BaseCommand):
     help = 'Load a csv file into the database'
 
+    def add_arguments(self, parser):
+        parser.add_argument('posit_arg')
+
     def handle(self, *args, **kwargs):
-        path = kwargs['path']
+        path = kwargs['posit_arg']
         with open(path, 'rt') as f:
             reader = csv.reader(f)
             for row in reader:
                 squirrel = Squirrel.objects.create(
-                    longtitude=row[0],
+                    longitude=row[0],
                     latitude=row[1],
                     uid=row[2],
                     shift=row[4],
