@@ -15,21 +15,16 @@
 
 
 <div id="mymap"></div>
-
+	
 <script type="text/javascript">
 	window.onload = function () {
-		var mymap = L.map('mymap').setView([40.7824,-73.9688], 13);
-	        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		var mymap = L.map('mymap').setView([40.783255,-73.965621], 13);
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiY2czMTc3IiwiYSI6ImNrM2dtaTUzajAzZTgzYmpxNmlzOG50bmkifQ.7aR3eNrJloBvb-jjve5YnQ'
+    	id: 'mapbox.streets',
+    	accessToken: 'pk.eyJ1IjoiY2czMTc3IiwiYSI6ImNrM2dtaTUzajAzZTgzYmpxNmlzOG50bmkifQ.7aR3eNrJloBvb-jjve5YnQ'
 		}).addTo(mymap);
-		#var marker = L.marker([40.78317,-73.96566]).addTo(mymap); 
-	        for (let i = 0; i < 10; i++) {
-      			var lat =squirrels_latitude[i]
-     			var lng =squirrels_longitude[i]
-		        var marker = L.marker([lat, lng]).addTo(mymap)
-		};
+
 	}
 
 </script>
