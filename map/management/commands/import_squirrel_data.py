@@ -9,8 +9,8 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('data_path',type='str',help ='The data path to import')
 
-    def handle(self,*args,**kargs):
-        path=kargs['data_path']
+    def handle(self,*args,**kwargs):
+        path=kwargs['data_path']
         c = 0
         with open(path, 'rt') as f:
             reader = csv.DictReader(f,fieldnames=('X','Y','Unique Squirrel ID','Hectare','Shift','Date','Hectare Squirrel Number','Age','Primary Fur Color','Highlight Fur Color','Combination of Primary and Highlight Color','Color notes','Location','Above Ground Sighter Measurement','Specific Location','Running','Chasing','Climbing','Eating','Foraging','Other Activities','Kuks','Quaas','Moans','Tail flags','Tail twitches','Approaches','Indifferent','Runs from','Other Interactions','Lat Long','Zip Codes','Community Districts','Borough Boundaries','City Council Districts',  'Police Precincts') )
