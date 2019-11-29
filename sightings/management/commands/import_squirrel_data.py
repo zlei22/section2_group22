@@ -17,7 +17,7 @@ class Command(BaseCommand):
             headers =next(reader)
                 
             for row in reader:
-                ：Sightings.objects.create(
+                Sightings.objects.create(
                     uid=row['Unique_Squirrel_ID'],
                     longitude=row['X'],
                     latitude=row['Y'],
