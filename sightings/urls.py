@@ -1,9 +1,10 @@
 from django.urls import path
-from sightings.views import*
-
+from sightings import views
+from sightings.views import *
 urlpatterns = [
-    path('',index, name='sightings_list'),
-    path('<str:uid>/',details,name='sightings_uid'),
-    path('add/',add,name='add'),
+    path('', views.index),
+    path('stats', stats, name='General Statistics'),
+    path('<str:uid>', uid, name='Specific Information'),
+    path('add', add, name='Add Sightings'),
 
 ]
