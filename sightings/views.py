@@ -3,17 +3,16 @@ from django.http import HttpResponse
 from .models import Sighting
 
 def index(request):
-    text = ''
     sightings=Sighting.objects.all()
-    for sighting in sightings:
-        text += "Squirrel ID: %s<br>" %(sighting.uid)
-    # return HttpResponse("This is a list of sightings.")
-    return HttpResponse(text)
+    context={
+        'sightings': sightings,
+    }
+    return render(request,"sightings/index.html",context)
 
 def uid(request,uid=None):
     sighting=Sighting.objects.get(uid)
     context={
-            'Sighting': sighting,
+        'sighting': sighting,
     }
     return render(request,"sightings/uid.html",context)
 
@@ -22,13 +21,13 @@ def add(request,uid=None):
         print(request.POST)
         data=request.POST
     context={
-            'Sighting': sightings,
+        'sighting': sightings,
     }
     return render(request,"sightings/add.html",context)
 
 def stats(request):
     sightings=Sighting.objects.all()
     context={
-            'Sighting': sightings,
+        'sighting': sightings,
     }
     return render(request,"sightings/stats.html",context)

@@ -1,16 +1,16 @@
 from django.shortcuts import render
-
-
-from .models import Squirrel
+#from django.template import loader
+from sightings.models import Sighting
 
 # Create your views here.
 
 def index(request):
-    squirrels_tracker_latitude = Squirrel.objects.all().values_list('latitude')
-    squirrels_tracker_longitude = Squirrel.objects.all().values_list('longitude')
-    context = {'latitude':squirrels_tracker_latitude,
-            'longitude':squirrels_tracker_longitude}
+    squirrels_x = Sighting.objects.all().values_list('longitude')
+    squirrels_y = Sighting.objects.all().values_list('latitude')
+    context = {'longitude':squirrels_x,
+            'latitude':squirrels_y}
+    #template = loader.get_template('map.html')
+    #return HttpResponse(template.render(context, request))
     return render(request,'map/squirrel_tracker_map.html',context)
-
 
 # test

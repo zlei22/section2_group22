@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<h1>Squirrel Sightings</h1>
+			{% if sightings %}
+				<ul>
+					{% for sighting in sightings %}
+					<li><a href='/sightings/{{ sighting.uid }}'>{{ sighting.uid }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<p>No sightings are available.</p>
+			{% endif %}
+	</body>
+</html>
