@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from map.models import Squirrel
+from .models import Sighting
 
 def index(request):
     text = ''
-    sightings=Squirrel.objects.all()
+    sightings=Sighting.objects.all()
     for sighting in sightings:
-        text += sighting + '<This is a link.>'  + '\n'
-    return HttpResponse("This is a list of sightings.")
-   # return HttpResponse(text)
+        text += "Squirrel ID: %s<br>" %(sighting.uid)
+    # return HttpResponse("This is a list of sightings.")
+    return HttpResponse(text)
 
 def uid(request,uid=None):
-    sighting=Squirrel.objects.get(uid)
+    sighting=Sighting.objects.get(uid)
     context={
             'Sighting': sighting,
     }
@@ -27,7 +27,7 @@ def add(request,uid=None):
     return render(request,"sightings/add.html",context)
 
 def stats(request):
-    sightings=Squirrel.objects.all()
+    sightings=Sighting.objects.all()
     context={
             'Sighting': sightings,
     }

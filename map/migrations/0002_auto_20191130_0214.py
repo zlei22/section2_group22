@@ -5,31 +5,29 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = True
-
     dependencies = [
+        ('map', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Sighting',
+            name='Squirrel',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('latitude', models.DecimalField(decimal_places=15, help_text='Latitude', max_digits=19)),
                 ('longitude', models.DecimalField(decimal_places=15, help_text='Longitude', max_digits=19)),
-                ('uid', models.CharField(default='', help_text='Unique Squirrel ID', max_length=255)),
-                ('shift', models.CharField(choices=[('AM', 'AM'), ('PM', 'PM')], default='', help_text='Shift', max_length=16)),
+                ('uid', models.CharField(help_text='Unique Squirrel ID', max_length=255, primary_key=True, serialize=False)),
+                ('shift', models.CharField(choices=[('AM', 'AM'), ('PM', 'PM')], help_text='Shift', max_length=16)),
                 ('date', models.DateField(help_text='Date')),
-                ('age', models.CharField(blank=True, choices=[('Adult', 'Adult'), ('Juvenile', 'Juvenile'), ('?', '?')], default='', help_text='Age', max_length=16)),
-                ('color', models.CharField(blank=True, choices=[('Gray', 'Gray'), ('Black', 'Black'), ('Cinnamon', 'Cinnamon')], default='', help_text='Primary Fur Color', max_length=16)),
-                ('loc', models.CharField(blank=True, choices=[('Above Ground', 'Above Ground'), ('Ground Plane', 'Ground Plane')], default='', help_text='Location', max_length=20)),
-                ('specific_loc', models.CharField(blank=True, default='', help_text='Specific Location', max_length=255)),
+                ('age', models.CharField(blank=True, choices=[('Adult', 'Adult'), ('Juvenile', 'Juvenile')], help_text='Age', max_length=16)),
+                ('color', models.CharField(blank=True, choices=[('Gray', 'Gray'), ('Black', 'Black'), ('Cinnamon', 'Cinnamon')], help_text='Primary Fur Color', max_length=16)),
+                ('loc', models.CharField(blank=True, choices=[('Above Ground', 'Above Ground'), ('Ground Plane', 'Ground Plane')], help_text='Location', max_length=20)),
+                ('specific_loc', models.CharField(blank=True, help_text='Specific Location', max_length=255)),
                 ('running', models.BooleanField(default=False, help_text='Running')),
                 ('chasing', models.BooleanField(default=False, help_text='Chasing')),
                 ('climbing', models.BooleanField(default=False, help_text='Climbing')),
                 ('eating', models.BooleanField(default=False, help_text='Eating')),
                 ('foraging', models.BooleanField(default=False, help_text='Foraging')),
-                ('other_act', models.CharField(blank=True, default='', help_text='Other Activities', max_length=255)),
+                ('other_act', models.CharField(blank=True, help_text='Other Activities', max_length=255)),
                 ('kuks', models.BooleanField(default=False, help_text='Kuks')),
                 ('quaas', models.BooleanField(default=False, help_text='Quaas')),
                 ('moans', models.BooleanField(default=False, help_text='Moans')),
@@ -39,5 +37,8 @@ class Migration(migrations.Migration):
                 ('indifferent', models.BooleanField(default=False, help_text='Indifferent')),
                 ('runs_from', models.BooleanField(default=False, help_text='Runs from')),
             ],
+        ),
+        migrations.DeleteModel(
+            name='Squirrels',
         ),
     ]
