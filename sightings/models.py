@@ -22,7 +22,7 @@ class Sighting(models.Model):
     uid = models.CharField(
         help_text=_('Unique Squirrel ID'),
         max_length=255,
-        primary_key=True,
+        default='',
     )
     
     # Shift
@@ -38,6 +38,7 @@ class Sighting(models.Model):
         help_text=_('Shift'),
         max_length=16,
         choices=SHIFT_CHOICES,
+        default='',
     )
 
     # Date
@@ -48,10 +49,12 @@ class Sighting(models.Model):
     # Age
     ADULT = 'Adult'
     JUVENILE = 'Juvenile'
+    UNKNOWN = '?'
 
     AGE_CHOICES = (
         (ADULT, 'Adult'),
         (JUVENILE, 'Juvenile'),
+        (UNKNOWN, '?'),
     )
 
     age = models.CharField(
@@ -59,6 +62,7 @@ class Sighting(models.Model):
         max_length=16,
         choices=AGE_CHOICES,
         blank=True,
+        default='',
     )
 
     # Primary Fur Color
@@ -77,6 +81,7 @@ class Sighting(models.Model):
         max_length=16,
         choices=COLOR_CHOICES,
         blank=True,
+        default='',
     )
 
     # Location
@@ -93,6 +98,7 @@ class Sighting(models.Model):
         max_length=20,
         choices=LOC_CHOICES,
         blank=True,
+        default='',
     )
     
     # Specific Location
@@ -100,6 +106,7 @@ class Sighting(models.Model):
         help_text=_('Specific Location'),
         max_length=255,
         blank=True,
+        default='',
     )
 
     # Running
@@ -137,6 +144,7 @@ class Sighting(models.Model):
         help_text=_('Other Activities'),
         max_length=255,
         blank=True,
+        default='',
     )
 
     # Kuks

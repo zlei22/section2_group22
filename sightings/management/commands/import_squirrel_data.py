@@ -1,13 +1,13 @@
-from sightings.models import Sightings
-
 import csv
 from django.core.management import BaseCommand
+from sightings.models import Sighting
+from datetime import datetime
 
 class Command(BaseCommand):
     help = 'Load a questions csv file into the database'
 
     def add_arguments(self, parser):
-        parser.add_argument('data_path',type='str',help ='The data path to import')
+        parser.add_argument('data_path')
 
     def handle(self,*args,**kwargs):
         path=kwargs['data_path']
@@ -17,31 +17,37 @@ class Command(BaseCommand):
             headers =next(reader)
                 
             for row in reader:
-                Sightings.objects.create(
-                    uid=row['Unique_Squirrel_ID'],
+                sightings = Sighting.objects.create(
+                    uid=row['Unique Squirrel ID'],
                     longitude=row['X'],
                     latitude=row['Y'],
-                    shift =row['Shift'],
-                    date= datetime.strptime(row['Date'], '%m%d%Y').date()
+                    shift=row['Shift'],
+                    date=datetime.strptime(row['Date'], '%m%d%Y').date(),
                     age=row['Age'],
                     color=row['Primary Fur Color'],
                     loc=row['Location'],
                     specific_loc=row['Specific Location'],
-                    running=row['Running'],
-                    chasing=row['Chasing'],
-                    climbing=row['Climbing'],
-                    eating=row['Eating'],
-                    oraging=row['Foraging'],
-                    other_act=row['Other Activities'],
-                    kuks=row['Kuks'],
-                    quaas=row['Quaas'],
-                    moans=row['Moans'],
-                    tail_flags=row['Tail flags'],
-                    tail_twitches=row['Tail twitches'],
-                    approaches=row['Approaches'],
-                    indifferent=row['Indifferent'],
-                    runs_from=row['Runs from']
+                    running=convert(row['Running']),
+                    chasing=convert(row['Chasing']),
+                    climbing=convert(row['Climbing']),
+                    eating=convert(row['Eating']),
+                    foraging=convert(row['Foraging']),
+                    other_act=convert(row['Other Activities']),
+                    kuks=convert(row['Kuks']),
+                    quaas=convert(row['Quaas']),
+                    moans=convert(row['Moans']),
+                    tail_flags=convert(row['Tail flags']),
+                    tail_twitches=convert(row['Tail twitches']),
+                    approaches=convert(row['Approaches']),
+                    indifferent=convert(row['Indifferent']),
+                    runs_from=convert(row['Runs from']),
                     )
                 c=c+1
         self.stdout.write("File path: %s" % path)
-        self.stdout.write("rows inserted: %s " % c)
+        self.stdout.write("Rows inserted: %s " % c)
+    
+def convert(string):
+    if(string.lower()=='true'):
+        return True
+    else:
+        return False
