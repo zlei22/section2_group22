@@ -1,12 +1,101 @@
 <html>
-	<head></head>
 	<body>
 		<h1>Add a New Sighting</h1>
-		<form method='POST' action='sightings/add'>
-			<input type="number" name="Longitude", value="{{sightings.longitude}}"><br>
-			<input type="number" name="Latitude", value="{{sightings.latitude}}">
-			<button type="submit", value="Submit"><a href="sightings/index">Retrun To Main page</a></button>
-                        <br>
+		<form action="{%url 'sightings:add'%}" method="POST">
+			{% csrf_token %}
+			<h3>Unique Squirrel ID</h3>
+			<input type="text" name="uid">
+
+			<h3>Latitude</h3>
+			<input type="number" name="latitude">
+			
+			<h3>Longitude</h3>
+			<input type="number" name="longitude">
+			
+			<h3>Shift</h3>
+			<input type="checkbox" name="shift" value="AM"> AM<br>
+			<input type="checkbox" name="shift" value="PM" checked> PM<br>
+
+			<h3>Date</h3>
+			<input type="date" name="date">
+
+			<h3>Age</h3>
+			<input type="checkbox" name="age" value="Adult"> Adult<br>
+			<input type="checkbox" name="age" value="Juvenile" checked> Juvenile<br>
+
+			<h3>Primary Fur Color</h3>
+			<input type="checkbox" name="color" value="Gray" checked> Gray<br>
+			<input type="checkbox" name="color" value="Black"> Black<br>
+			<input type="checkbox" name="color" value="Cinnamon"> Cinnamon<br>
+
+			<h3>Location</h3>
+			<input type="checkbox" name="loc" value="Ground Plane" checked> Ground Plane<br>
+			<input type="checkbox" name="loc" value="Above Ground"> Above Ground<br>
+
+			<h3>Specific Location</h3>
+			<input type="text" name="specific_loc">
+
+			<h3>Running</h3>
+			<input type="checkbox" name="running" value='True'> True<br>
+			<input type="checkbox" name="running" value='False' checked> False<br>
+
+			<h3>Chasing</h3>
+			<input type="checkbox" name="chasing" value='True'> True<br>
+			<input type="checkbox" name="chasing" value='False' checked> False<br>
+
+			<h3>Climbing</h3>
+			<input type="checkbox" name="climbing" value='True'> True<br>
+			<input type="checkbox" name="climbing" value='False' checked> False<br>
+
+			<h3>Eating</h3>
+			<input type="checkbox" name="eating" value='True'> True<br>
+			<input type="checkbox" name="eating" value='False' checked> False<br>
+
+			<h3>Foraging</h3>
+			<input type="checkbox" name="foraging" value='True'> True<br>
+			<input type="checkbox" name="foraging" value='False' checked> False<br>
+
+			<h3>Other Activities</h3>
+			<input type="text" name="other_act">
+
+			<h3>Kuks</h3>
+			<input type="checkbox" name="kuks" value='True'> True<br>
+			<input type="checkbox" name="kuks" value='False' checked> False<br>
+
+			<h3>Quaas</h3>
+			<input type="checkbox" name="quaas" value='True'> True<br>
+			<input type="checkbox" name="quaas" value='False' checked> False<br>
+
+			<h3>Moans</h3>
+			<input type="checkbox" name="moans" value='True'> True<br>
+			<input type="checkbox" name="moans" value='False' checked> False<br>
+
+			<h3>Tail Flags</h3>
+			<input type="checkbox" name="tail_flags" value='True'> True<br>
+			<input type="checkbox" name="tail_flags" value='False' checked> False<br>
+
+			<h3>Tail Twitches</h3>
+			<input type="checkbox" name="tail_twitches" value='True'> True<br>
+			<input type="checkbox" name="tail_twitches" value='False' checked> False<br>
+
+			<h3>Approaches</h3>
+			<input type="checkbox" name="approaches" value='True'> True<br>
+			<input type="checkbox" name="approaches" value='False' checked> False<br>
+
+			<h3>Indifferent</h3>
+			<input type="checkbox" name="indifferent" value='True'> True<br>
+			<input type="checkbox" name="indifferent" value='False' checked> False<br>
+
+			<h3>Runs From</h3>
+			<input type="checkbox" name="runs_from" value='True'> True<br>
+			<input type="checkbox" name="runs_from" value='False' checked> False<br>
+
+
+			<br>
+			<br>
+			<input type="submit" value="Add">
+
+			<a href="{%url 'sightings:index' %}">Return</a>
 		</form>
 	</body>
 </html>
