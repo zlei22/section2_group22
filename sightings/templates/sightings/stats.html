@@ -1,13 +1,59 @@
-<html>
+<!DOCTYPE html>
+<html lang = "en">
 	<head>
-		<title>General Statistics</title>
+	<title>General Statistics</title>
 	</head>
+
 	<body>
-		<h1>General Statisitcs</h1>
+		<h1>General Statistics</h4>
+		<h2>The total number of squirrels: {{stats.number}}</h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+		</div>
 		<h2>Latitude</h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+			<ul>
+				<li>Min Latitude : {{stats.min_latitude}}</li>
+				<li>Max Latitude : {{stats.max_latitude}}</li>
+				<li>Average Latitude : {{stats.average_latitude}}</li>
+			</ul>	
+		</div>
+
 		<h2>Longitude</h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+			<ul>
+				<li>Min Longitude : {{stats.min_longitude}}</li>
+				<li>Max Longitude : {{stats.max_longitude}}</li>
+				<li>Average Longitude : {{stats.average_longitude}}</li>
+			</ul>	
+		</div>
+
 		<h2>Age</h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+			<ul>
+				<li>Adult : Adult squirrels are{{stats.adult}}% of total numbers of squirrels observed.</li>
+				<li>Juvenile : Juvenile squirrels are {{stats.juvenile}}% of total numbers of squirrels observed.</li>
+			</ul>	
+		</div>
+
 		<h2>Primary Fur Color</h2>
-		<h2>Location</h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+			<ul>
+				<li> {{stats.gray}}% of total numbers of squirrels observed have gray fur.</li>
+				<li> {{stats.black}}% of total numbers of squirrels observed have black fur.</li>
+				<li> {{stats.cinnamon}}% of total numbers of squirrels observed have cinnamon fur.</li>
+			</ul>
+		</div>
+
+
+		<h2>Running? </h2>
+		<div class="div-col columns column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em;">
+			<ul>
+				<li>When being spot, {{stats.running}}% of squirrels are running.</li>
+				<li>When being spot, {{stats.max_longitude}}% of squirrels are not running</li>
+			</ul>	
+		</div>
+
+
 	</body>
 </html>
+
