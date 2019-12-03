@@ -66,7 +66,37 @@ def add(request):
 
 def stats(request):
     sightings=Sighting.objects.all()
+    totalnumber=Sighting.object.count()
+    stats_lat = Sightings.aggregate(min_lat = Min('latitude'), max_lat = Max('latitude'), avg_lat = Avg('latitude'))
+    stats_long = Sightings.aggregate(min_long = Min('longitude'), max_lat = Max('longitude'), avg_lat = Avg('longitude'))
+    adult_count = Sighting.objects.filter(age='Adult').count()
+    juv_count = Sighting.objects.filter(age='Juvenile').count()
+    adult = round(adult_count / totalnumber * 100)
+    juvenile = round(juv_count/ totalnumber * 100)
+    gray_count = Sighting.objects.filter(color = 'Gray').count()
+    black_count = Sighting.objects.filter(color = 'black').count()
+    cin_count = Sighting.objects.filter(color = 'Cinnamon').count()
+    gray = round (gray_count / totalnumber * 100)
+    black = round (black_count/totalnumber * 100)
+    cinnamon = round (cin_count / totalnumber *100)
+    running = Sighting.objects.filter(running=True).count()
+    not_running = Sighting.objects.filter(running=False).count()
+
+
+
     context={
         'sightings': sightings,
+        'totalnumber':totalnumber,
+        'stats_lat':stats_lat,
+        'stats_long':stats_long,
+        'adult':adult,
+        'juvenile':juvenile,
+        'gray':gray
+        'balck':black
+        'cinnamon':cinnamon
+        'running':running
+        'not_running':not_running
+
+
     }
     return render(request,"sightings/stats.html",context)
