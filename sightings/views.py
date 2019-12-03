@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,
 from django.http import HttpResponse
+
 from .models import Sighting
 
 
@@ -61,14 +62,19 @@ def add(request):
                 runs_from=runs_from)
         sighting.save()
         return redirect('sightings:index')
-    return render(request,"sightings/add.html",context)
+     return render(request,"sightings/add.html",context)
+
+def delete(request,uid):
+    del_uid = Sighting.objects.filter(uid=uid)
+    del_uid.delete()
+    return redirect('sightings:index')
 
 
 def stats(request):
     sightings=Sighting.objects.all()
     totalnumber=Sighting.object.count()
-    stats_lat = Sightings.aggregate(min_lat = Min('latitude'), max_lat = Max('latitude'), avg_lat = Avg('latitude'))
-    stats_long = Sightings.aggregate(min_long = Min('longitude'), max_lat = Max('longitude'), avg_lat = Avg('longitude'))
+    stats_lat = sightings.aggregate(min_lat = Min('latitude'), max_lat = Max('latitude'), avg_lat = Avg('latitude'))
+    stats_long = sightings.aggregate(min_long = Min('longitude'), max_lat = Max('longitude'), avg_lat = Avg('longitude'))
     adult_count = Sighting.objects.filter(age='Adult').count()
     juv_count = Sighting.objects.filter(age='Juvenile').count()
     adult = round(adult_count / totalnumber * 100)
