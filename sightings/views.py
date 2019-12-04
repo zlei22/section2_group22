@@ -45,15 +45,15 @@ def add(request):
 
 def stats(request):
     sightings = Sighting.objects.all()
-    totalnumber = Sighting.object.Count()
+    totalnumber = Sighting.objects.count()
     stats_lat = sightings.aggregate(min_lat = Min('latitude'), max_lat = Max('latitude'), avg_lat = Avg('latitude'))
-    stats_long = sightings.aggregate(min_long = Min('longitude'), max_lat = Max('longitude'), avg_lat = Avg('longitude'))
+    stats_long = sightings.aggregate(min_long = Min('longitude'), max_long = Max('longitude'), avg_long = Avg('longitude'))
     adult_count = Sighting.objects.filter(age='Adult').count()
     juv_count = Sighting.objects.filter(age='Juvenile').count()
     adult = round(adult_count / totalnumber * 100)
     juvenile = round(juv_count/ totalnumber * 100)
     gray_count = Sighting.objects.filter(color = 'Gray').count()
-    black_count = Sighting.objects.filter(color = 'black').count()
+    black_count = Sighting.objects.filter(color = 'Black').count()
     cin_count = Sighting.objects.filter(color = 'Cinnamon').count()
     gray = round (gray_count / totalnumber * 100)
     black = round (black_count/totalnumber * 100)
