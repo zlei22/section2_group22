@@ -1,10 +1,10 @@
-from django.shortcuts import render,get_object_or_404,
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from django.db.models import Avg, Max, Min, Count
 
 from .models import Sighting
-from .forms import SquirrelForm
+from .form import SquirrelForm
 
 def index(request):
     sightings=Sighting.objects.all()
@@ -15,19 +15,21 @@ def index(request):
 
 
 def uid(request,uid):
-    sighting = Sighting.objects.get(uid=uid)
-    if request.method == "POST":
-        sighting.shift = request.POST['sighting.shift']
-        sighting.save()
-        return redirect('sightings:uid')
-    elif request.method == "DELETE":
-        sighting.delete()
-        return redirect('sightings:index')
-    else:
-        context={
-            'sighting': sighting,
-        }
-        return render(request,'sightings/uid.html',context)
+    # sighting = Sighting.objects.get(uid=uid)
+    # sighting = Sighting.objects.all()
+    # if request.method == "POST":
+        # sighting.shift = request.POST['sighting.shift']
+        # sighting.save()
+        # return redirect('sightings:uid')
+    # elif request.method == "DELETE":
+        # sighting.delete()
+        # return redirect('sightings:index')
+    # else:
+    # context={
+        # 'sighting': sighting,
+    #}
+    # return render(request,'sightings/uid.html',context)
+    return HttpResponse("This is a page")
 
 
 def add(request):
@@ -66,11 +68,11 @@ def stats(request):
         'stats_long':stats_long,
         'adult':adult,
         'juvenile':juvenile,
-        'gray':gray
-        'balck':black
-        'cinnamon':cinnamon
-        'running':running
-        'not_running':not_running
+        'gray':gray,
+        'black':black,
+        'cinnamon':cinnamon,
+        'running':running,
+        'not_running':not_running,
 
 
     }
