@@ -8,7 +8,7 @@ Project Group 22 Section 2
 
 Contributors: Zijing Lei, Chang Gao
 
-UNIs: [zl2847, cg3177]
+UNIs: zl2847, cg3177
 
 ## Documentation
 The description for this project is [**Squirrel Tracker**](https://docs.google.com/document/d/1SPv3fMDKiemrR86rD-S9ecvI2npz3PljDzwCfxK2x5g/edit)
