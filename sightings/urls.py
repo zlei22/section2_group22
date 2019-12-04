@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from sightings import views
 from sightings.views import *
 
@@ -7,11 +8,14 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # Update and Delete: /sightings/<uid>
-    path('<str:uid>', uid, name='update'),
+    # path('<str:uid>', views.uid, name='update'),
+    url(r'^<str:uid>$', views.uid),
 
     # Add New Sightings: /sightings/add
-    path('add', add, name='add'),
+    # path('add', views.add, name='add'),
+    url(r'^add$', views.add),
 
     # Check Up Statistics: /sightings/stats
-    path('stats', stats, name='stats'),
+    # path('stats', views.stats, name='stats'),
+    url(r'^stats$', views.stats),
  ]
