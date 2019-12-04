@@ -45,7 +45,7 @@ def add(request):
 
 def stats(request):
     sightings = Sighting.objects.all()
-    totalnumber = Sighting.object.count()
+    totalnumber = Sighting.object.Count()
     stats_lat = sightings.aggregate(min_lat = Min('latitude'), max_lat = Max('latitude'), avg_lat = Avg('latitude'))
     stats_long = sightings.aggregate(min_long = Min('longitude'), max_lat = Max('longitude'), avg_lat = Avg('longitude'))
     adult_count = Sighting.objects.filter(age='Adult').count()
