@@ -14,7 +14,8 @@ def index(request):
     return render(request,"sightings/index.html",context)
 
 
-def uid(request,uid):
+def uid(request, uid):
+    sighting = Sighting.objects.get(uid=uid)
     # sighting = Sighting.objects.get(uid=uid)
     # sighting = Sighting.objects.all()
     # if request.method == "POST":
@@ -29,18 +30,42 @@ def uid(request,uid):
         # 'sighting': sighting,
     #}
     # return render(request,'sightings/uid.html',context)
-    return HttpResponse("This is a page")
+    return HttpResponse(sighting)
 
+
+def edit(request, uid):
+    sighting = Sighting.objects.get(uid=uid)
+    if request.method == 'POST':
+        form = SquirrelForm(request.POST, instance=sighting)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/sightings/{sighting.uid}')
+    else:
+        form = SquirrelForm(instance=sighting)
+    context = {
+        'form': form,
+    }
+    return render(request, 'sightings/edit.html', context)
+
+
+def delete(request, uid):
+    sighting = Sighting.objects.get(uid=uid)
+    sighting.delete()
+    return redirect(f'/sightings')
+    # return render(reqest, 'sighting/edit.html', context)
 
 def add(request):
     if request.method == 'POST':
         form = SquirrelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sightings:index')
+            return redirect(f'/sightings')
     else:
         form = SquirrelForm()
-    return render(request, 'sightings/add.html', {'form': form})
+    context = {
+        'form': form,
+    }
+    return render(request, 'sightings/add.html', context)
 
 
 def stats(request):
