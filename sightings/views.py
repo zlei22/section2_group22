@@ -69,7 +69,7 @@ def details(request, squirrel_id):
 
 
 def edit(request, squirrel_id):
-    sightings = Sighting.objects.filter(uid=squirrel_id)
+    sighting = Sighting.objects.filter(uid=squirrel_id)
     if request.method == 'POST':
         form = SquirrelForm(request.POST, instance=sighting)
         if form.is_valid():
