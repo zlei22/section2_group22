@@ -1,11 +1,13 @@
 <html>
-	<head></head>
-	<body>
-		<h1>Sighting Information</h1>
-		<h2>Unique ID: {{sighting2.uid}}</h2>
-		
-		<button type='button'>Update</button>
-		<button type='button'>Delete</button>
-	</body>
+  <body>
+    <h1>Squirrel Sighting Details</h1>
+    {% for sighting in sightings %}
+      <h3>Squirrel</h3>
+      {{ sighting.uid }}<br>
+      {{ sighting.longitude }}<br>
+      {{ sighting.latitude }}<br>
+      <br>
+    {% endfor %}
+  </body>
 </html>
 

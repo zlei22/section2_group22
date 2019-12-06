@@ -9,10 +9,39 @@ from .form import SquirrelForm
 
 def index(request):
     sightings=Sighting.objects.all()
-    context={
+    context = {
         'sightings': sightings,
     }
-    return render(request,"sightings/index.html",context)
+    return render(request, 'sightings/index.html', context)
+
+
+def details(request, squirrel_id):
+    sightings = Sighting.objects.filter(uid=squirrel_id)
+    context = {
+        'sightings': sightings
+    }
+    return render(request, 'sightings/details.html', context)
+
+
+def edit(request, squirrel_id):
+    sighting = Sighting.objects.get(uid=squirrel_id)
+    if request.method == 'POST':
+        form = SquirrelForm(request.POST, instance=sighting)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/sightings/{squirrel_id}')
+    else:
+        form = SquirrelForm(instance=sighting)
+    context = {
+        'form': form,
+    }
+    return render(request, 'sightings/edit.html', context)
+
+
+def delete(request, squirrel_id):
+    sighting = Sighting.objects.filter(uid=squirrel_id)
+    sighting.delete()
+    return redirect(f'/sightings')
 
 
 def add(request):
@@ -63,27 +92,3 @@ def stats(request):
     return render(request, "sightings/stats.html", context)
 
 
-def details(request, squirrel_id):
-    sighting = Sighting.objects.filter(uid=squirrel_id)
-    return HttpResponse(sighting)
-
-
-def edit(request, squirrel_id):
-    sighting = Sighting.objects.filter(uid=squirrel_id)
-    if request.method == 'POST':
-        form = SquirrelForm(request.POST, instance=sighting)
-        if form.is_valid():
-            form.save()
-            return redirect(f'/sightings/{squirrel_id}')
-    else:
-        form = SquirrelForm(instance=sighting)
-    context = {
-        'form': form,
-    }
-    return render(request, 'sightings/edit.html', context)
-
-
-def delete(request, squirrel_id):
-    sighting = Sighting.objects.filter(uid=squirrel_id)
-    sighting.delete()
-    return redirect(f'/sightings')
