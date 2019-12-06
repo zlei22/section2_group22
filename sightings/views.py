@@ -1,10 +1,11 @@
-from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.db.models import Avg, Max, Min, Count
 
 from .models import Sighting
 from .form import SquirrelForm
+
 
 def index(request):
     sightings=Sighting.objects.all()
@@ -13,46 +14,6 @@ def index(request):
     }
     return render(request,"sightings/index.html",context)
 
-
-def uid(request, uid):
-    sighting = Sighting.objects.get(uid=uid)
-    # sighting = Sighting.objects.get(uid=uid)
-    # sighting = Sighting.objects.all()
-    # if request.method == "POST":
-        # sighting.shift = request.POST['sighting.shift']
-        # sighting.save()
-        # return redirect('sightings:uid')
-    # elif request.method == "DELETE":
-        # sighting.delete()
-        # return redirect('sightings:index')
-    # else:
-    # context={
-        # 'sighting': sighting,
-    #}
-    # return render(request,'sightings/uid.html',context)
-    return HttpResponse(sighting)
-
-
-def edit(request, uid):
-    sighting = Sighting.objects.get(uid=uid)
-    if request.method == 'POST':
-        form = SquirrelForm(request.POST, instance=sighting)
-        if form.is_valid():
-            form.save()
-            return redirect(f'/sightings/{sighting.uid}')
-    else:
-        form = SquirrelForm(instance=sighting)
-    context = {
-        'form': form,
-    }
-    return render(request, 'sightings/edit.html', context)
-
-
-def delete(request, uid):
-    sighting = Sighting.objects.get(uid=uid)
-    sighting.delete()
-    return redirect(f'/sightings')
-    # return render(reqest, 'sighting/edit.html', context)
 
 def add(request):
     if request.method == 'POST':
@@ -98,7 +59,31 @@ def stats(request):
         'cinnamon':cinnamon,
         'running':running,
         'not_running':not_running,
-
-
     }
-    return render(request,"sightings/stats.html",context)
+    return render(request, "sightings/stats.html", context)
+
+
+def details(request, squirrel_id):
+    sighting = Sighting.objects.filter(uid=squirrel_id)
+    return HttpResponse(sighting)
+
+
+def edit(request, squirrel_id):
+    sightings = Sighting.objects.filter(uid=squirrel_id)
+    if request.method == 'POST':
+        form = SquirrelForm(request.POST, instance=sighting)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/sightings/{squirrel_id}')
+    else:
+        form = SquirrelForm(instance=sighting)
+    context = {
+        'form': form,
+    }
+    return render(request, 'sightings/edit.html', context)
+
+
+def delete(request, squirrel_id):
+    sighting = Sighting.objects.filter(uid=squirrel_id)
+    sighting.delete()
+    return redirect(f'/sightings')

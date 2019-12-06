@@ -1,23 +1,20 @@
 from django.urls import path
-from django.conf.urls import url
-from sightings import views
-from sightings.views import *
+# from django.conf.urls import url
+from . import views
 
 urlpatterns = [
-    # List of Sightings: /sightings
-    path('', views.index, name='index'),
+    path('', views.index),
 
-    # Update and Delete: /sightings/<uid>
-    path('<str:uid>', views.uid, name='details'),
-    # url(r'^<str:uid>$', views.uid),
-
-    path('<str:uid>/edit', views.edit, name='edit'),
-
-    # Add New Sightings: /sightings/add
-    path('add', views.add, name='add'),
+    path('add/', views.add),
     # url(r'^add$', views.add),
 
-    # Check Up Statistics: /sightings/stats
-    path('stats', views.stats, name='stats'),
+    path('stats/', views.stats),
     # url(r'^stats$', views.stats),
+    
+    path('<str:squirrel_id>', views.details),
+    # url(r'^<str:uid>$', views.uid),
+
+    path('<str:squirrel_id>/edit/', views.edit),
+
+    path('<str:squirrel_id>/delete/', views.delete)
  ]
