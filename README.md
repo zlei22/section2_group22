@@ -10,6 +10,8 @@ Contributors: Zijing Lei, Chang Gao
 
 UNIs: [zl2847, cg3177]
 
+Webpage: [**Link**](https://tools-254023.appspot.com/sightings/)
+
 ## Documentation
 Project description: [**Squirrel Tracker**](https://docs.google.com/document/d/1SPv3fMDKiemrR86rD-S9ecvI2npz3PljDzwCfxK2x5g/edit)
 
