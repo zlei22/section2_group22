@@ -1,4 +1,4 @@
 
-from final_project.wsgi import application
+from squirreltracker.wsgi import application
 
 app = application
