@@ -55,11 +55,7 @@ He would like to start keeping track of all the known squirrels and plans to sta
  
 - A view to create a new sighting   
   Located at: /sightings/add   
-  Method: POST   
-
-- A view to delete a sighting    
-  Located at: /sightings/<unique-squirrel-id>   
-  Method: DELETE   
+  Method: POST  
 
 - A view with general stats about the sightings
  : Particular stats are for you to decide but must include five of the attributes listed in the initial CSV download.    
