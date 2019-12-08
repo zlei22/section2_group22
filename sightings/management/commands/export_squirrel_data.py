@@ -13,13 +13,10 @@ class Command(BaseCommand):
 
     def handle(self,*args,**options):
 
-        with open(options['csv_file'])as fp:
-            export_data = csv.writer(fp,delimiter='\t')
+        with open(options['csv_file'], 'w', newline='')as fp:
+            export_data = csv.writer(fp, delimiter='\t')
             fields = [f.name for f in Sighting._meta.fields]
             export_data.writerow(fields)
-            for line in Sightings.objects.all():
+            for line in Sighting.objects.all():
                 export_data.writerow([getattr(line,i) for i in fields])
-
-
-
 
