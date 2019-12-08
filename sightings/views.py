@@ -24,16 +24,22 @@ def details(request, squirrel_id):
 
 
 def edit(request, squirrel_id):
-    sighting = Sighting.objects.get(uid=squirrel_id)
+    sightings = Sighting.objects.filter(uid=squirrel_id)
+    forms = []
     if request.method == 'POST':
-        form = SquirrelForm(request.POST, instance=sighting)
-        if form.is_valid():
-            form.save()
+        for sighting in sightings:
+            forms.append(SquirrelForm(request.POST, instance=sighting))
+        # form = SquirrelForm(request.POST, instance=sighting)
+        if all([form.is_valid() for form in forms]):
+            for form in forms:
+                form.save()
             return redirect(f'/sightings/{squirrel_id}')
     else:
-        form = SquirrelForm(instance=sighting)
+        for sighting in sightings:
+            forms.append(SquirrelForm(instance=sighting))
+        # form = SquirrelForm(instance=sighting)
     context = {
-        'form': form,
+        'forms': forms,
     }
     return render(request, 'sightings/edit.html', context)
 

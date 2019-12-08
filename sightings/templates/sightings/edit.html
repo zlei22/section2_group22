@@ -1,11 +1,18 @@
 <html>
   <body>
+    <h1>Edit Squirrel Sightings</h1>
+    <a href='/sightings/'>Back</a>
+    <br>
     <form method="post">
       {% csrf_token %}
       
-      {{ form.as_p }}
-      <br>
-      <input type="submit" name='Update'>
+      {% for form in forms %}
+      <h3>Squirrel Sighting</h3>
+        {{ form.as_p }}
+        <input type="submit" name='Update'>
+	<br><br>
+      {% endfor %}
+
     </form>
   </body>
 </html>

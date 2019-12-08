@@ -1,13 +1,33 @@
 <html>
   <body>
     <h1>Squirrel Sighting Details</h1>
+    <a href="/sightings/">Back</a>
     {% for sighting in sightings %}
-      <h3>Squirrel</h3>
-      {{ sighting.uid }}<br>
-      {{ sighting.longitude }}<br>
-      {{ sighting.latitude }}<br>
+    <h3>Squirrel   <a href="/sightings/{{ sighting.uid }}/edit/">Edit</a></h3>
+      Unique Squirrel ID: {{ sighting.uid }}<br>
+      Longtitude: {{ sighting.longitude }}<br>
+      Latitude: {{ sighting.latitude }}<br>
+      Shift: {{ sighting.shift }}<br>
+      Date: {{ sighting.date }}<br>
+      Age: {{ sighting.age }}<br>
+      Primary Fur Color: {{ sighting.color }}<br>
+      Location: {{ sighting.loc }}<br>
+      Specific Location: {{ sighting.specific_loc }}<br>
+      Running: {{ sighting.running }}<br>
+      Chasing: {{ sighting.chasing }}<br>
+      Climbing: {{ sighting.climbing }}<br>
+      Eating: {{ sighting.eating }}<br>
+      Foraging: {{ sighting.foraging }}<br>
+      Other Activities: {{ sighting.other_act }}<br>
+      Kuks: {{ sighting.kuks }}<br>
+      Quaas: {{ sighting.quaas }}<br>
+      Moans: {{ sighting.moans }}<br>
+      Tail Flags: {{ sighting.tail_flags }}<br>
+      Tail Twitches: {{ sighting.tail_twitches }}<br>
+      Approaches: {{ sighting.approaches }}<br>
+      Indifferent: {{ sighting.indifferent }}<br>
+      Runs From: {{ sighting.runs_from }}<br>
       <br>
     {% endfor %}
   </body>
 </html>
-
